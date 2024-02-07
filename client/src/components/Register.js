@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import avatar from '../assets/profile.png'
 import { Toaster } from 'react-hot-toast'
 import { useFormik } from 'formik'
-import { passwordValidate } from '../helper/validate'
+import { registerValidation } from '../helper/validate'
 import convertToBase64 from '../helper/convert'
 
 import styles from '../styles/Username.module.css'
@@ -18,7 +18,7 @@ export default function Register() {
       username: "example123",
       password : 'admin@123'
     },
-    validate : passwordValidate,
+    validate : registerValidation,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit : async values => {
