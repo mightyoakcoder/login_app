@@ -2,7 +2,7 @@
   background: rgba(255, 255, 255, 0.55);
   border-radius: 16px;
   box-shadow: 0 4px 30px #4747470b;
-  backdrop-filter: blur(7.1px);
+  backdrop-filter: blur(8.5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   @apply border-4 border-gray-50 shrink-0 h-3/4 w-[30%] rounded-3xl py-20 px-7 min-w-max;
 }
@@ -28,3 +28,16 @@
 input[type='file']{
   display: none;
 }
+
+/* go back and edit for a better mobile experience
+/* @media (max-width: 480px) {
+  body {
+      background-image: url('./assets/Background-mobile.jpg');
+  }
+}
+
+@media (min-width: 1025px) {
+  body {
+      background-image: url('./assets/Background3.jpg');
+ }
+} */
