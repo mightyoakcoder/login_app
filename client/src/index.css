@@ -10,5 +10,17 @@
 
 body{
     background: #dcdce6;
-    background-image: url('./assets/Background.png');
+    background-size: cover;
+}
+
+@media (max-width: 480px) {
+    body {
+        background-image: url('./assets/Background-mobile.jpg');
+    }
+}
+
+@media (min-width: 1025px) {
+    body {
+        background-image: url('./assets/Background3.jpg');
+   }
 }
