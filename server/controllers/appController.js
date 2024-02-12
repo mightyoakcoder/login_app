@@ -110,7 +110,7 @@ export async function login(req, res) {
             );
 
             return res.status(200).send({
-              msg: "Login Successfull...!",
+              msg: "Login Successful...!",
               username: user.username,
               token,
             });
@@ -165,7 +165,32 @@ body: {
 }
 */
 export async function updateUser(req, res) {
-  res.json("updateUser route");
+  try {
+    const id = req.query.id;
+
+    if (!id) {
+      return res.status(400).send({ error: "User ID Not Provided...!" });
+    }
+
+    const body = req.body;
+
+    // Update the data and retrieve the updated document
+    UserModel.findOneAndUpdate({ _id: id }, body, { new: true })
+      .then(updatedUser => {
+        if (!updatedUser) {
+          return res.status(404).send({ error: "User Not Found...!" });
+        }
+
+        return res.status(200).send({ msg: "Record Updated...!" });
+      })
+      .catch(error => {
+        console.error("Error updating user:", error);
+        return res.status(500).send({ error: "Failed to update user" });
+      });
+  } catch (error) {
+    console.error("Catch block error:", error);
+    return res.status(500).send({ error: error.message });
+  }
 }
 
 /** GET: http://localhost:8080/api/generateOTP */
