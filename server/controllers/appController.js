@@ -2,6 +2,7 @@ import UserModel from "../model/User.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import ENV from "../config.js";
+import otpGenerator from 'otp-generator'
 
 /** middleware for verify user */
 export async function verifyUser(req, res, next) {
@@ -166,36 +167,34 @@ body: {
 */
 export async function updateUser(req, res) {
   try {
-    const id = req.query.id;
-
-    if (!id) {
-      return res.status(400).send({ error: "User ID Not Provided...!" });
-    }
-
-    const body = req.body;
-
-    // Update the data and retrieve the updated document
-    UserModel.findOneAndUpdate({ _id: id }, body, { new: true })
+    // const id = req.query.id;
+    const { userId } = req.user;
+    
+    if (userId) {
+      
+      const body = req.body;
+      
+      // Update the data and retrieve the updated document
+      UserModel.findOneAndUpdate({ _id: userId }, body, { new: true })
       .then(updatedUser => {
         if (!updatedUser) {
           return res.status(404).send({ error: "User Not Found...!" });
         }
-
-        return res.status(200).send({ msg: "Record Updated...!" });
+        
+        return res.status(201).send({ msg: "Record Updated...!" });
       })
-      .catch(error => {
-        console.error("Error updating user:", error);
-        return res.status(500).send({ error: "Failed to update user" });
-      });
+    } else {
+      return res.status(500).send({ error: "Failed to update user" });
+    };
   } catch (error) {
-    console.error("Catch block error:", error);
-    return res.status(500).send({ error: error.message });
+    return res.status(401).send({ error });
   }
 }
 
 /** GET: http://localhost:8080/api/generateOTP */
 export async function generateOTP(req, res) {
-  res.json("generateOTP route");
+  let OTP = await otpGenerator.generate(6, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false});
+  // res.status(201).send({ code: req.app.locals.OTP })
 }
 
 /** GET: http://localhost:8080/api/verifyOTP */
