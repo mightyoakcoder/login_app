@@ -232,13 +232,16 @@ export async function resetPassword(req, res) {
     const { username, password } = req.body;
 
     try {
-      const user = await UserModel.findOne({ username })
-      if(!user) {
-        return res.status(404).send({ error: "Username not found"});
+      const user = await UserModel.findOne({ username });
+      if (!user) {
+        return res.status(404).send({ error: "Username not found" });
       }
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      await UserModel.updateOne({ username: user.username }, { password: hashedPassword });
+      await UserModel.updateOne(
+        { username: user.username },
+        { password: hashedPassword }
+      );
 
       req.app.locals.resetSession = false;
 
