@@ -13,7 +13,7 @@ export default function Recovery() {
   useEffect(() => {
     generateOTP(username).then((OTP) => {
       console.log(OTP)
-      if (OTP) return toast.success("OTP has been sent to your email");
+      if (OTP) return toast.success("OTP has been sent to the email we have on file for this username");
       return toast.error("Problem while returning OTP");
     });
   }, [username]);
@@ -37,7 +37,7 @@ export default function Recovery() {
 
     toast.promise(sendPromise, {
       loading: 'Sending...',
-      success: <b>OTP has been sent to your email</b>,
+      success: <b>OTP has been sent to the email we have on file for this username</b>,
       error: <b>Could Not Send It!</b>
     });
 

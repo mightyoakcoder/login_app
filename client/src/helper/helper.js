@@ -44,7 +44,11 @@ export async function getUser({ username }){
       const { data } = await axios.get(`/api/user/${username}`);
       return { data };
   } catch (error) {
+    if (error.response && error.response.status === 401) {
       return { error : "Password doesn't Match...!"}
+    } else{
+      return{ error: "An error occured while fetching user data."};
+    }
   }
 }
 
@@ -74,7 +78,8 @@ export async function verifyPassword({ username, password }){
           return Promise.resolve({ data });
       }
   } catch (error) {
-      return Promise.reject({ error : "Password doesn't Match...!"})
+    const errorMessage = error.response ? error.response.data.message : "Password doesn't Match...!";
+    return Promise.reject({ error: errorMessage });
   }
 }
 
