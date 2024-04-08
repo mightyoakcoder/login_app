@@ -63,7 +63,7 @@ function userLogout(){
       <Toaster position='top-center' reverseOrder={false}></Toaster>
 
       <div className='flex justify-center items-center h-screen'>
-        <div className={`${styles.glass} ${extend.glass}`} style={{ width: "40%", paddingTop: "3em"}}>
+        <div className={`${styles.glass} ${extend.glass}`} style={{ width: "40%", paddingTop: "1.5em"}}>
 
           <div className='title flex flex-col items-center'>
             <h4 className='text-5xl font-bold'>Profile</h4>

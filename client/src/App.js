@@ -8,6 +8,7 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import Recovery from './components/Recovery';
 import Reset from './components/Reset';
+import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 import Search from './components/Search/Search';
 
