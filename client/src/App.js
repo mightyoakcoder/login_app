@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 /** import all components */
+import About from './components/About';
 import Username from './components/Username';
 import Password from './components/Password';
 import Register from './components/Register';
@@ -10,7 +11,6 @@ import Recovery from './components/Recovery';
 import Reset from './components/Reset';
 import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
-import Search from './components/Search/Search';
 
 /**  Auth middleware */
 import { AuthorizeUser, ProtectRoute } from './middleware/auth';
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Username></Username>
+  },
+  {
+      path : '*',
+      element : <About></About>
   },
   {
     path: '/register',
