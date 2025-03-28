@@ -1,8 +1,8 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
 /** import all components */
-import About from './components/About';
+import AboutPage from './components/About';
 import Username from './components/Username';
 import Password from './components/Password';
 import Register from './components/Register';
@@ -18,19 +18,23 @@ import { AuthorizeUser, ProtectRoute } from './middleware/auth';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Username></Username>
+    element: <Navigate to="/about" replace />
   },
   {
-      path : '*',
-      element : <About></About>
+      path : '/about',
+      element : <AboutPage />
+  },
+  {
+    path : '/username',
+    element : <Username />
   },
   {
     path: '/register',
-    element: <Register></Register>
+    element: <Register />
   },
   {
       path : '/password',
-      element : <ProtectRoute><Password / ></ProtectRoute>
+      element : <ProtectRoute><Password /></ProtectRoute>
   },
   {
       path : '/profile',
@@ -38,19 +42,19 @@ const router = createBrowserRouter([
   },
   {
       path : '/recovery',
-      element : <Recovery></Recovery>
+      element : <Recovery />
   },
   {
       path : '/reset',
-      element : <Reset></Reset>
+      element : <Reset />
   },
   {
       path : '/search',
-      element : <Search></Search>
+      element : <Search />
   },
   {
       path : '*',
-      element : <PageNotFound></PageNotFound>
+      element : <PageNotFound />
   },
 ]);
 
